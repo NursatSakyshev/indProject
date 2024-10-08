@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ profile.user.username }}'s Profile</title>
+</head>
+<body>
+    <h1>{{ profile.user.username }}'s Profile</h1>
+
+   {% if profile.profile_picture %}
+        <img src="{{ profile.profile_picture.url }}" alt="Profile Picture"><br>
+    {% else %}
+        <p>Профильное фото отсутствует</p>
+    {% endif %}
+
+    <p>{{ profile.bio }}</p>
+
+ <form method="post" action="{% url 'follow_user' %}">
+    {% csrf_token %}
+    <input type="hidden" name="username" value="{{ profile.user.username }}">
+    <button type="submit">Подписаться</button>
+</form>
+
+<form method="post" action="{% url 'unfollow_user' %}">
+    {% csrf_token %}
+    <input type="hidden" name="username" value="{{ profile.user.username }}">
+    <button type="submit">Отписаться</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!-- blog/templates/blog/post_form.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create/Edit Post</title>
+</head>
+<body>
+    <h1>Create or Edit Post</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Post</button>
+    </form>
+</body>
+</html>
